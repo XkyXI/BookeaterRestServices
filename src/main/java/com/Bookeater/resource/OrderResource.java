@@ -12,7 +12,10 @@ public class OrderResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Order getMostRecentOrder() {
-        return OrderService.getOrder();
+        Order order = OrderService.getOrder();
+        if (order == null)
+            throw new NotFoundException();
+        return order;
     }
 
     @POST
