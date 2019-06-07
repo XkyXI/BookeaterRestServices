@@ -60,6 +60,8 @@ Sample Response
 ```
 
 - http://centaurus-4.ics.uci.edu:1025/BookeaterRestServices/api/order
+
+Request for POST /order has the format 
 ``` json
 {
     "address": "Address Los Angeles, CA 90012",

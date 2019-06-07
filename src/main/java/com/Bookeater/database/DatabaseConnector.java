@@ -36,11 +36,12 @@ public class DatabaseConnector {
         return null;
     }
 
-    public static void insertData (PreparedStatement stmt) {
+    public static int insertData (PreparedStatement stmt) {
         try {
-            stmt.executeUpdate();
+            return stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return -1;
     }
 }

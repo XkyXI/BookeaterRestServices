@@ -5,6 +5,7 @@ import com.Bookeater.service.OrderService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/order")
 public class OrderResource {
@@ -20,7 +21,9 @@ public class OrderResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addOrder(Order order) {
-        OrderService.postOrder(order);
+    public Response addOrder(Order order) {
+        if (OrderService.postOrder(order) == -1)
+            throw new BadRequestException();
+        return Response.ok().build();
     }
 }

@@ -28,7 +28,7 @@ public class OrderService {
         return null;
     }
 
-    public static void postOrder(Order order) {
+    public static int postOrder(Order order) {
         String sql = "INSERT INTO OrderSummary (books, firstname, lastname, phone," +
                 "address, ship_method, ccard_name, ccard_num, ccard_date," +
                 "ccard_code, ccard_zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -47,9 +47,10 @@ public class OrderService {
             stmt.setInt(10, order.getCcardCode());
             stmt.setString(11, order.getCcardZip());
 
-            DatabaseConnector.insertData(stmt);
+            return DatabaseConnector.insertData(stmt);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return -1;
     }
 }
