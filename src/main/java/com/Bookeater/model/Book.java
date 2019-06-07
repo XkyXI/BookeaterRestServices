@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Book {
 
-    private String ISBN;
+    private String BookId;
     private String Title;
     private String Author;
     private String Edition;
@@ -14,8 +14,8 @@ public class Book {
     private String Publisher;
     private String Image;
 
-    public String getISBN() { return ISBN; }
-    public void setISBN(String ISBN) { this.ISBN = ISBN; }
+    public String getBookId() { return BookId; }
+    public void setBookId(String bookId) { this.BookId = bookId; }
 
     public String getTitle() { return Title; }
     public void setTitle(String title) { this.Title = title; }

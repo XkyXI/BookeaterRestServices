@@ -1,6 +1,5 @@
 package com.Bookeater.resource;
 
-import com.Bookeater.model.Book;
 import com.Bookeater.model.Category;
 import com.Bookeater.service.CategoryService;
 
@@ -15,15 +14,15 @@ import java.util.List;
 public class CategoryResource {
 
     @GET
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Category> getAllCategories () {
         return CategoryService.getAllCategories();
     }
 
-    @Path("/{cid}")
+    @Path("/{id}")
     @GET
-    @Produces(MediaType.APPLICATION_XML)
-    public List<Book> getBooksByCategoryId (@PathParam("cid") String cid) {
-        return CategoryService.getBooksByCategoryId(cid);
+    @Produces(MediaType.APPLICATION_JSON)
+    public Category getCategoryById (@PathParam("id") String id) {
+        return CategoryService.getCategoryByCategoryId(id);
     }
 }

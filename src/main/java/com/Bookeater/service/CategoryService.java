@@ -1,7 +1,6 @@
 package com.Bookeater.service;
 
 import com.Bookeater.database.DatabaseConnector;
-import com.Bookeater.model.Book;
 import com.Bookeater.model.Category;
 
 import java.sql.Connection;
@@ -27,42 +26,41 @@ public class CategoryService {
                     categories.add(cat);
                 }
             } catch (SQLException e) {
-                throw new RuntimeException(e.getMessage());
+                e.printStackTrace();
             } finally {
                 try {
                     conn.close();
                 } catch (SQLException e) {
-                    throw new RuntimeException(e.getMessage());
+                    e.printStackTrace();
                 }
             }
         }
         return categories;
     }
 
-
-    public static List<Book> getBooksByCategoryId (String cid) {
-        String sql = "SELECT * FROM Books WHERE category = \"" + cid + "\"";
+    public static Category getCategoryByCategoryId (String cid) {
+        String sql = "SELECT * FROM Categories WHERE cid = \"" + cid + "\"";
         Connection conn = DatabaseConnector.getDBConnection();
         ResultSet rs = DatabaseConnector.retrieveQueryResults(conn, sql);
 
-        List<Book> books = new ArrayList<>();
         if (rs != null) {
             try {
-                while (rs.next()) {
-                    Book b = new Book();
-                    ServiceUtils.fillBookInfo(rs, b);
-                    books.add(b);
+                if (rs.next()) {
+                    Category cat = new Category();
+                    cat.setCid(rs.getString("cid"));
+                    cat.setCname(rs.getString("category"));
+                    return cat;
                 }
             } catch (SQLException e) {
-                throw new RuntimeException(e.getMessage());
+                e.printStackTrace();
             } finally {
                 try {
                     conn.close();
                 } catch (SQLException e) {
-                    throw new RuntimeException(e.getMessage());
+                    e.printStackTrace();
                 }
             }
         }
-        return books;
+        return null;
     }
 }

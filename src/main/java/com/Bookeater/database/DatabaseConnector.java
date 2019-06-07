@@ -22,8 +22,25 @@ public class DatabaseConnector {
             Statement stmt = conn.createStatement();
             return stmt.executeQuery(sql);
         } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
+            e.printStackTrace();
         }
+        return null;
+    }
 
+    public static ResultSet retrievePreparedStatementResults(PreparedStatement stmt) {
+        try {
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void insertData (PreparedStatement stmt) {
+        try {
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

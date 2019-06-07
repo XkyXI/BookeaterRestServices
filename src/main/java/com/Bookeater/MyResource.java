@@ -20,9 +20,18 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_HTML)
     public String getIt() {
-        return "/api/books <br>" +
-                "/api/books/{pid} <br>" +
-                "/api/category <br>" +
-                "/api/category/{cid} <br>";
+        return "GET /api/books/ <br>" +
+                "GET /api/books/byBookId/{id} <br>" +
+                "GET /api/books/byCategory/{cid} <br>" +
+                "GET /api/books/byKeyword/{word} <br>" +
+                "GET /api/books/suggestions/byKeyword/{word} <br><br>" +
+
+                "GET /api/category <br>" +
+                "GET /api/category/{cid} <br><br>" +
+
+                "GET /api/order <br>" +
+                "POST /api/order <br><br>" +
+
+                "GET /api/zip/{zip}";
     }
 }
